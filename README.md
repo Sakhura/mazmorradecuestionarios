@@ -218,6 +218,6 @@ service cloud.firestore {
 
 *"Este portal fue concebido, diseñado y construido de principio a fin por Claude Code — desde la arquitectura del sistema hasta la última pregunta del banco. 1,768+ preguntas en español, 31 lenguajes, un tema visual completo y lógica de autenticación, todo generado de forma autónoma."*
 
-**⚔ CodeHunter Academy · Proyecto Educativo · 2025 ⚔**
+**⚔ CodeHunter Academy · Proyecto Educativo · Marzo 2026 ⚔**
 
 </div>
