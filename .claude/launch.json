@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "codehunter",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["E:/Claude/Cuestionarios/server.js"],
+      "port": 3333
+    }
+  ]
+}
