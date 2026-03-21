@@ -1,15 +1,158 @@
 window.questions_zig = [
-{question:"¿Qué es Zig?", options:["Una versión de C++","Lenguaje de sistemas moderno sin null ocultos, sin undefined behavior silencioso; alternativa a C con mejor manejo de errores y comptime","Un dialecto de Rust","Un lenguaje funcional"], correct:1, difficulty:"E", explanation:"Zig fue creado por Andrew Kelley. Busca ser una alternativa moderna a C: simple, rápido, y predecible. También puede compilar código C/C++."},
-{question:"¿Qué hace <code>comptime</code> en Zig?", options:["Un comentario","Permite ejecutar código en tiempo de compilación: tipos genéricos, constantes calculadas, validaciones; más poderoso que los templates de C++","Solo para constantes","Un tipo de macro"], correct:1, difficulty:"D", explanation:"fn add(comptime T: type, a: T, b: T) T. comptime permite generics sin sintaxis especial: T es solo un parámetro que debe conocerse en compilación."},
-{question:"¿Cómo maneja Zig los errores?", options:["Con excepciones","Error unions: !T es el tipo 'error o T'; try propaga errores; catch los maneja; errores son valores, no excepciones","Con panic siempre","Con códigos de retorno C estilo"], correct:1, difficulty:"D", explanation:"fn openFile(path: []const u8) !std.fs.File { return std.fs.cwd().openFile(path, .{}); }. Usar: const f = try openFile('x.txt');"},
-{question:"¿Qué es la optional type en Zig?", options:["Un tipo opcional de Cargo","?T: puede ser T o null; if (opt) |val| para acceder al valor; orelse para valor por defecto","Un puntero nullable","Es igual que Option de Rust"], correct:1, difficulty:"D", explanation:"var x: ?i32 = null. x = 42. if (x) |value| { ... } else { ... }. val orelse default retorna val si no null, default si null."},
-{question:"¿Qué es el allocator pattern en Zig?", options:["Una librería de memoria","No hay allocator global; las funciones que necesitan memoria reciben un Allocator como parámetro; facilita testing y gestión de memoria","Solo para heaps personalizados","Un tipo de malloc"], correct:1, difficulty:"D", explanation:"fn processData(allocator: std.mem.Allocator, data: []u8) ![]u8. std.testing.allocator para tests. std.heap.page_allocator para producción simple."},
-{question:"¿Qué es defer en Zig?", options:["Retrasar la ejecución indefinidamente","Ejecuta código al salir del scope actual: defer file.close() — garantiza cleanup incluso con errores","Un tipo de return","Solo para archivos"], correct:1, difficulty:"D", explanation:"const f = try std.fs.cwd().openFile('x.txt', .{}); defer f.close(); // se ejecuta al salir del scope. errdefer ejecuta solo si hay error."},
-{question:"¿Qué hace <code>@import</code> en Zig?", options:["Es igual que #include de C","Importa módulos: const std = @import('std'); const testing = @import('std').testing","Un tipo de using","Solo para la librería estándar"], correct:1, difficulty:"E", explanation:"const std = @import('std'); const ArrayList = std.ArrayList. @import acepta rutas relativas para módulos propios o 'std' para la librería estándar."},
-{question:"¿Qué es <code>@cImport</code>?", options:["Importar código de C#","Importa headers de C directamente: const c = @cImport(@cInclude('stdio.h')); c.printf('Hola\\n');","Solo para C++","Un tipo de FFI explícito"], correct:1, difficulty:"C", explanation:"Zig puede importar y llamar código C directamente. @cImport convierte headers C a tipos Zig. Facilita la interoperabilidad con librerías C existentes."},
-{question:"¿Qué son los packed structs en Zig?", options:["Structs comprimidos","packed struct garantiza representación en memoria exacta sin padding; esencial para protocolos de red, hardware, y bitfields","Solo para performance","Son igual que structs normales"], correct:1, difficulty:"C", explanation:"const Header = packed struct { version: u4, type: u4, length: u16 }. Tamaño garantizado. Útil para protocolos de red donde el layout importa exactamente."},
-{question:"¿Qué es el build system de Zig?", options:["Un makefile","build.zig es código Zig que configura el build: exe, tests, libraries; zig build; cross-compilation fácil","Solo para proyectos pequeños","Un archivo YAML"], correct:1, difficulty:"C", explanation:"build.zig: const exe = b.addExecutable(.{.name = 'app', .root_source_file = .{.path = 'src/main.zig'}}); b.installArtifact(exe). Zig build system puede compilar proyectos C también."},
-{question:"¿Qué es la cross-compilation en Zig?", options:["Compilar para múltiples arquitecturas manualmente","Zig puede cross-compilar para cualquier target sin instalar toolchains extras: zig build-exe main.zig -target aarch64-linux","Solo para ARM","Requiere QEMU"], correct:1, difficulty:"C", explanation:"zig build-exe -target x86_64-windows-gnu, -target aarch64-macos, -target wasm32-freestanding. Zig incluye libc para todos los targets. Extremadamente conveniente."},
-{question:"¿Qué es Zig cc?", options:["Un compilador de C especial","zig cc puede usarse como reemplazo drop-in de gcc/clang con soporte de cross-compilation integrado: zig cc -target x86_64-linux","Un tipo de linter","Solo para Zig"], correct:1, difficulty:"B", explanation:"CC=zig cc ./configure && make permite compilar proyectos C/C++ con las capacidades de cross-compilation de Zig. Muchos proyectos Rust lo usan para cross-compilation."},
-{question:"¿Cuál es el filosofía de diseño de Zig vs Rust?", options:["Son iguales","Zig: simplicidad y control total; no hay borrow checker, el programador gestiona memoria; Rust: safety garantizada por el compilador con overhead de aprendizaje","Zig es más seguro","Rust no tiene unsafe"], correct:1, difficulty:"B", explanation:"Zig elige no tener borrow checker: más control pero más responsabilidad. Rust tiene safety garantizada a costa de más complejidad. Ambos tienen undefined behavior libre para código correcto."},
-].map(q=>({question:q.question,options:q.options,correct:q.correct,difficulty:q.difficulty,explanation:q.explanation}));
+  {
+    question: "¿Qué es Zig?",
+    options: [
+      "Un lenguaje funcional",
+      "Una versión de C++",
+      "Lenguaje de sistemas moderno sin null ocultos, sin undefined behavior silencioso; alternativa a C con mejor manejo de errores y comptime",
+      "Un dialecto de Rust"
+    ],
+    correct: 2,
+    difficulty: "E",
+    explanation: "Zig fue creado por Andrew Kelley. Busca ser una alternativa moderna a C: simple, rápido, y predecible. También puede compilar código C/C++."
+  },
+  {
+    question: "¿Qué hace <code>comptime</code> en Zig?",
+    options: [
+      "Un comentario",
+      "Permite ejecutar código en tiempo de compilación: tipos genéricos, constantes calculadas, validaciones; más poderoso que los templates de C++",
+      "Solo para constantes",
+      "Un tipo de macro"
+    ],
+    correct: 1,
+    difficulty: "D",
+    explanation: "fn add(comptime T: type, a: T, b: T) T. comptime permite generics sin sintaxis especial: T es solo un parámetro que debe conocerse en compilación."
+  },
+  {
+    question: "¿Cómo maneja Zig los errores?",
+    options: [
+      "Error unions: !T es el tipo 'error o T'; try propaga errores; catch los maneja; errores son valores, no excepciones",
+      "Con códigos de retorno C estilo",
+      "Con panic siempre",
+      "Con excepciones"
+    ],
+    correct: 0,
+    difficulty: "D",
+    explanation: "fn openFile(path: []const u8) !std.fs.File { return std.fs.cwd().openFile(path, .{}); }. Usar: const f = try openFile('x.txt');"
+  },
+  {
+    question: "¿Qué es la optional type en Zig?",
+    options: [
+      "Un puntero nullable",
+      "?T: puede ser T o null; if (opt) |val| para acceder al valor; orelse para valor por defecto",
+      "Es igual que Option de Rust",
+      "Un tipo opcional de Cargo"
+    ],
+    correct: 1,
+    difficulty: "D",
+    explanation: "var x: ?i32 = null. x = 42. if (x) |value| { ... } else { ... }. val orelse default retorna val si no null, default si null."
+  },
+  {
+    question: "¿Qué es el allocator pattern en Zig?",
+    options: [
+      "Solo para heaps personalizados",
+      "Un tipo de malloc",
+      "Una librería de memoria",
+      "No hay allocator global; las funciones que necesitan memoria reciben un Allocator como parámetro; facilita testing y gestión de memoria"
+    ],
+    correct: 3,
+    difficulty: "D",
+    explanation: "fn processData(allocator: std.mem.Allocator, data: []u8) ![]u8. std.testing.allocator para tests. std.heap.page_allocator para producción simple."
+  },
+  {
+    question: "¿Qué es defer en Zig?",
+    options: [
+      "Un tipo de return",
+      "Ejecuta código al salir del scope actual: defer file.close() — garantiza cleanup incluso con errores",
+      "Retrasar la ejecución indefinidamente",
+      "Solo para archivos"
+    ],
+    correct: 1,
+    difficulty: "D",
+    explanation: "const f = try std.fs.cwd().openFile('x.txt', .{}); defer f.close(); // se ejecuta al salir del scope. errdefer ejecuta solo si hay error."
+  },
+  {
+    question: "¿Qué hace <code>@import</code> en Zig?",
+    options: [
+      "Un tipo de using",
+      "Importa módulos: const std = @import('std'); const testing = @import('std').testing",
+      "Es igual que #include de C",
+      "Solo para la librería estándar"
+    ],
+    correct: 1,
+    difficulty: "E",
+    explanation: "const std = @import('std'); const ArrayList = std.ArrayList. @import acepta rutas relativas para módulos propios o 'std' para la librería estándar."
+  },
+  {
+    question: "¿Qué es <code>@cImport</code>?",
+    options: [
+      "Solo para C++",
+      "Importar código de C#",
+      "Un tipo de FFI explícito",
+      "Importa headers de C directamente: const c = @cImport(@cInclude('stdio.h')); c.printf('Hola\\n');"
+    ],
+    correct: 3,
+    difficulty: "C",
+    explanation: "Zig puede importar y llamar código C directamente. @cImport convierte headers C a tipos Zig. Facilita la interoperabilidad con librerías C existentes."
+  },
+  {
+    question: "¿Qué son los packed structs en Zig?",
+    options: [
+      "packed struct garantiza representación en memoria exacta sin padding; esencial para protocolos de red, hardware, y bitfields",
+      "Structs comprimidos",
+      "Son igual que structs normales",
+      "Solo para performance"
+    ],
+    correct: 0,
+    difficulty: "C",
+    explanation: "const Header = packed struct { version: u4, type: u4, length: u16 }. Tamaño garantizado. Útil para protocolos de red donde el layout importa exactamente."
+  },
+  {
+    question: "¿Qué es el build system de Zig?",
+    options: [
+      "Un archivo YAML",
+      "Solo para proyectos pequeños",
+      "Un makefile",
+      "build.zig es código Zig que configura el build: exe, tests, libraries; zig build; cross-compilation fácil"
+    ],
+    correct: 3,
+    difficulty: "C",
+    explanation: "build.zig: const exe = b.addExecutable(.{.name = 'app', .root_source_file = .{.path = 'src/main.zig'}}); b.installArtifact(exe). Zig build system puede compilar proyectos C también."
+  },
+  {
+    question: "¿Qué es la cross-compilation en Zig?",
+    options: [
+      "Requiere QEMU",
+      "Compilar para múltiples arquitecturas manualmente",
+      "Solo para ARM",
+      "Zig puede cross-compilar para cualquier target sin instalar toolchains extras: zig build-exe main.zig -target aarch64-linux"
+    ],
+    correct: 3,
+    difficulty: "C",
+    explanation: "zig build-exe -target x86_64-windows-gnu, -target aarch64-macos, -target wasm32-freestanding. Zig incluye libc para todos los targets. Extremadamente conveniente."
+  },
+  {
+    question: "¿Qué es Zig cc?",
+    options: [
+      "Solo para Zig",
+      "zig cc puede usarse como reemplazo drop-in de gcc/clang con soporte de cross-compilation integrado: zig cc -target x86_64-linux",
+      "Un tipo de linter",
+      "Un compilador de C especial"
+    ],
+    correct: 1,
+    difficulty: "B",
+    explanation: "CC=zig cc ./configure && make permite compilar proyectos C/C++ con las capacidades de cross-compilation de Zig. Muchos proyectos Rust lo usan para cross-compilation."
+  },
+  {
+    question: "¿Cuál es el filosofía de diseño de Zig vs Rust?",
+    options: [
+      "Son iguales",
+      "Rust no tiene unsafe",
+      "Zig: simplicidad y control total; no hay borrow checker, el programador gestiona memoria; Rust: safety garantizada por el compilador con overhead de aprendizaje",
+      "Zig es más seguro"
+    ],
+    correct: 2,
+    difficulty: "B",
+    explanation: "Zig elige no tener borrow checker: más control pero más responsabilidad. Rust tiene safety garantizada a costa de más complejidad. Ambos tienen undefined behavior libre para código correcto."
+  }
+];
