@@ -8,7 +8,10 @@
       "mcp__Claude_Preview__preview_start",
       "WebFetch(domain:localhost)",
       "Bash(node -e \"const fs=require\\(''fs''\\); const g={}; const code=fs.readFileSync\\(''js/questions/csharp.js'',''utf8''\\).replace\\(/window\\\\./g,''g.''\\); try { eval\\(code\\); console.log\\(''OK, items:'', g.questions_csharp.length\\); } catch\\(e\\) { console.log\\(''ERR:'', e.message\\); }\")",
-      "Bash(node -e \"const fs=require\\(''''fs''''\\); const code=fs.readFileSync\\(''''js/questions/csharp.js'''',''''utf8''''\\); const lines=code.split\\(''''\\\\n''''\\); for\\(let i=0;i<lines.length;i++\\){try{eval\\(lines.slice\\(0,i+1\\).join\\(''''\\\\n''''\\).replace\\(/window\\\\./g,''''''''\\)\\);}catch\\(e\\){if\\(e.message!==''''Unexpected end of input''''&&!e.message.includes\\(''''incomplete''''\\)\\){continue;}}} \")"
+      "Bash(node -e \"const fs=require\\(''''fs''''\\); const code=fs.readFileSync\\(''''js/questions/csharp.js'''',''''utf8''''\\); const lines=code.split\\(''''\\\\n''''\\); for\\(let i=0;i<lines.length;i++\\){try{eval\\(lines.slice\\(0,i+1\\).join\\(''''\\\\n''''\\).replace\\(/window\\\\./g,''''''''\\)\\);}catch\\(e\\){if\\(e.message!==''''Unexpected end of input''''&&!e.message.includes\\(''''incomplete''''\\)\\){continue;}}} \")",
+      "Bash(node -e \":*)",
+      "Bash(printf '\\\\n];\\\\n')",
+      "Bash(\"E:/Claude/Cuestionarios/js/questions/typescript.js\")"
     ]
   }
 }

@@ -34,9 +34,17 @@ function initFirebase() {
 
 // ── Sign In / Out ──
 function signInWithGoogle() {
-  if (!_auth) return;
+  if (!_firebaseReady || !_auth) {
+    showFirebaseSetupModal();
+    return;
+  }
   const provider = new firebase.auth.GoogleAuthProvider();
-  _auth.signInWithPopup(provider).catch(e => console.error('Sign-in error:', e));
+  _auth.signInWithPopup(provider).catch(e => {
+    console.error('Sign-in error:', e);
+    if (e.code === 'auth/popup-blocked') {
+      alert('El popup fue bloqueado por el navegador. Permite popups para este sitio.');
+    }
+  });
 }
 
 function signOutUser() {
@@ -115,6 +123,34 @@ function showAuthInfo() {
       }
     }, true);
   }
+}
+
+// ── Firebase Setup Info Modal ──
+function showFirebaseSetupModal() {
+  // Remove existing modal if any
+  const existing = document.getElementById('firebase-setup-modal');
+  if (existing) { existing.remove(); return; }
+
+  const modal = document.createElement('div');
+  modal.id = 'firebase-setup-modal';
+  modal.innerHTML = `
+    <div class="fsm-backdrop" onclick="document.getElementById('firebase-setup-modal').remove()"></div>
+    <div class="fsm-box">
+      <div class="fsm-icon">🔥</div>
+      <h2 class="fsm-title">Configurar Firebase</h2>
+      <p class="fsm-desc">Para guardar tu progreso en la nube necesitas conectar Firebase.</p>
+      <ol class="fsm-steps">
+        <li>Ve a <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a></li>
+        <li>Crea un proyecto → activa <strong>Authentication → Google</strong></li>
+        <li>Crea <strong>Firestore Database</strong> (modo producción)</li>
+        <li>Ve a <em>Configuración del proyecto → Tu app web</em> y copia la config</li>
+        <li>Pega los valores en <code>js/firebase-config.js</code> y cambia <code>FIREBASE_ENABLED = true</code></li>
+      </ol>
+      <div class="fsm-note">💾 Mientras tanto, tu progreso se guarda localmente en este navegador.</div>
+      <button class="fsm-close" onclick="document.getElementById('firebase-setup-modal').remove()">Entendido</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
 }
 
 document.addEventListener('DOMContentLoaded', initFirebase);

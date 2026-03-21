@@ -50,9 +50,9 @@ window.questions_php = [
   {
     question: "¿Qué hace <code>isset()</code>?",
     options: [
-      "Crea una variable con valor nulo si no existía previamente",
-      "Elimina una variable del scope actual liberando su memoria",
-      "Verifica si el valor de la variable es un número entero válido",
+      "Crea una variable con valor nulo si no existía previamente en el scope",
+      "Elimina permanentemente una variable del scope liberando su memoria asociada",
+      "Verifica si el valor de la variable es un número entero válido no vacío",
       "Retorna true si la variable existe y no es null"
     ],
     correct: 3,
@@ -76,7 +76,7 @@ window.questions_php = [
     options: [
       "Un tipo de objeto con propiedades definidas dinámicamente en tiempo de ejecución",
       "Un array de objetos instanciados con claves numéricas consecutivas",
-      "Un array ordenado numéricamente con acceso por posición entera",
+      "Un array ordenado numéricamente con acceso exclusivo por posición entera",
       "Array con claves de string: $arr = ['nombre' => 'Ana', 'edad' => 30]"
     ],
     correct: 3,
@@ -98,10 +98,10 @@ window.questions_php = [
   {
     question: "¿Qué es <code>include</code> vs <code>require</code>?",
     options: [
-      "Ambas instrucciones son idénticas y se pueden usar indistintamente",
+      "Ambas instrucciones son idénticas y se pueden usar indistintamente en cualquier contexto",
       "require lanza fatal error si no encuentra el archivo; include genera warning pero continúa",
-      "include detiene la ejecución si el archivo no se encuentra en el path",
-      "require está obsoleto y fue reemplazado por include en PHP 7"
+      "include detiene completamente la ejecución si el archivo no se encuentra en el path",
+      "require está obsoleto y fue reemplazado por include en versiones modernas de PHP"
     ],
     correct: 1,
     difficulty: "E",
@@ -122,10 +122,10 @@ window.questions_php = [
   {
     question: "¿Qué es PDO en PHP?",
     options: [
-      "Un tipo de array especializado para almacenar resultados de consultas SQL",
+      "Un tipo de array especializado para almacenar y paginar resultados de consultas SQL",
       "PHP Data Objects: interfaz de abstracción de base de datos con prepared statements para prevenir SQL injection",
-      "Una librería gráfica para generar reportes y gráficas desde datos tabulares",
-      "Un framework de PHP para construir APIs REST con enrutamiento automático"
+      "Una librería gráfica para generar reportes y gráficas desde datos tabulares en PHP",
+      "Un framework de PHP para construir APIs REST con enrutamiento y validación automática"
     ],
     correct: 1,
     difficulty: "D",
@@ -134,10 +134,10 @@ window.questions_php = [
   {
     question: "¿Qué hace <code>array_map()</code>?",
     options: [
-      "Combina múltiples arrays usando las claves comunes como punto de unión",
-      "Filtra los elementos del array según un criterio de comparación dado",
+      "Combina múltiples arrays usando las claves comunes como punto de unión entre ellos",
+      "Filtra los elementos del array descartando los que no cumplen el criterio dado",
       "Aplica una función a cada elemento del array y retorna nuevo array con los resultados",
-      "Crea un mapa de coordenadas a partir de un array de puntos geográficos"
+      "Crea un índice de coordenadas a partir de un array de puntos con clave geográfica"
     ],
     correct: 2,
     difficulty: "D",
@@ -146,10 +146,10 @@ window.questions_php = [
   {
     question: "¿Qué es Composer en PHP?",
     options: [
-      "Un tipo de namespace para organizar clases en proyectos grandes",
-      "Un framework PHP de alto rendimiento para aplicaciones empresariales",
+      "Un tipo de namespace para organizar y autocargar clases en proyectos grandes de PHP",
+      "Un framework PHP de alto rendimiento diseñado para aplicaciones empresariales críticas",
       "Gestor de dependencias de PHP: composer.json define dependencias, composer install las instala",
-      "Una herramienta de edición de audio para proyectos multimedia en PHP"
+      "Una herramienta de edición y procesamiento multimedia para proyectos con PHP y FFmpeg"
     ],
     correct: 2,
     difficulty: "D",
@@ -159,9 +159,9 @@ window.questions_php = [
     question: "¿Qué es el namespace en PHP?",
     options: [
       "Encapsula clases, funciones y constantes bajo un nombre para evitar conflictos: namespace App\\Controllers;",
-      "Un tipo de array asociativo que agrupa variables relacionadas por nombre",
-      "Una variable superglobal que almacena el nombre del script en ejecución",
-      "Es equivalente exacto a los paquetes de Java con la misma sintaxis y reglas"
+      "Un tipo de array asociativo que agrupa variables globales relacionadas bajo un mismo prefijo",
+      "Una variable superglobal especial que almacena el nombre del script PHP en ejecución",
+      "Equivalente exacto a los paquetes de Java con la misma sintaxis de declaración e importación"
     ],
     correct: 0,
     difficulty: "D",
@@ -170,10 +170,10 @@ window.questions_php = [
   {
     question: "¿Qué es el autoloading con PSR-4?",
     options: [
-      "Cargar automáticamente arrays desde archivos de configuración externos",
-      "Cargar imágenes y recursos multimedia de forma diferida bajo demanda",
+      "Cargar automáticamente arrays de configuración desde archivos externos en el arranque",
+      "Cargar imágenes y recursos multimedia de forma diferida bajo demanda del navegador",
       "Convención que mapea namespaces a rutas de archivos; con composer, las clases se cargan automáticamente",
-      "Una característica exclusiva del framework Laravel sin equivalente externo"
+      "Una característica exclusiva del framework Laravel sin equivalente estándar en PHP puro"
     ],
     correct: 2,
     difficulty: "D",
@@ -182,9 +182,9 @@ window.questions_php = [
   {
     question: "¿Qué hace el operador null coalescing <code>??</code>?",
     options: [
-      "Es el operador Elvis ?: que retorna el operando izquierdo si es truthy",
-      "Verifica si dos variables tienen exactamente el mismo tipo de datos",
-      "Es un operador ternario abreviado equivalente a if-else en una línea",
+      "Es el operador Elvis ?: que retorna el operando izquierdo si es evaluado como truthy",
+      "Compara si dos variables apuntan exactamente al mismo tipo de datos en memoria",
+      "Es un operador ternario abreviado equivalente a una estructura if-else en una línea",
       "Retorna el primer operando si no es null, o el segundo: $name = $_GET['name'] ?? 'default'"
     ],
     correct: 3,
@@ -194,10 +194,10 @@ window.questions_php = [
   {
     question: "¿Qué son los Traits en PHP?",
     options: [
-      "Características de tipo usadas en anotaciones para verificación estática",
-      "Un tipo de mixin similar al de Java implementado como clases abstractas",
+      "Anotaciones de tipo usadas por analizadores estáticos para verificación de propiedades",
+      "Un tipo de mixin de herencia múltiple implementado mediante clases abstractas internas",
       "Mecanismo de reutilización de código horizontal en PHP: trait Loggable { public function log() {...} }; class User { use Loggable; }",
-      "Son interfaces con implementación por defecto equivalentes a Java 8+"
+      "Interfaces con implementación por defecto equivalentes a los métodos default de Java 8"
     ],
     correct: 2,
     difficulty: "D",
@@ -207,9 +207,9 @@ window.questions_php = [
     question: "¿Qué es una arrow function en PHP 7.4+?",
     options: [
       "fn($x) => $x * 2: arrow functions con captura implícita del scope externo",
-      "Solo se pueden usar dentro de array_map y funciones similares de array",
-      "Una función de flecha que aplica estilos CSS a elementos del DOM",
-      "Son completamente idénticas a las arrow functions de JavaScript en comportamiento"
+      "Funciones de flecha restringidas al uso dentro de array_map y funciones similares de array",
+      "Una función de flecha que aplica transformaciones CSS a los elementos generados por PHP",
+      "Funciones completamente idénticas a las arrow functions de JavaScript en todos sus comportamientos"
     ],
     correct: 0,
     difficulty: "D",
@@ -218,9 +218,9 @@ window.questions_php = [
   {
     question: "¿Qué son los tipos de datos en PHP 8?",
     options: [
-      "Solo tipos primitivos: int, float, string y bool sin tipos compuestos",
-      "PHP no tiene sistema de tipos y todo es dinámico sin anotaciones posibles",
-      "Solo string e int son tipos verificados en tiempo de ejecución en PHP 8",
+      "Solo tipos primitivos: int, float, string y bool sin soporte para tipos compuestos o union",
+      "PHP carece completamente de sistema de tipos y todo es dinámico sin posibilidad de anotaciones",
+      "Únicamente string e int son verificados en tiempo de ejecución como tipos reales en PHP 8",
       "PHP 8 añadió: union types (int|string), named arguments, match expression, nullsafe operator (?->), fibers"
     ],
     correct: 3,
@@ -230,10 +230,10 @@ window.questions_php = [
   {
     question: "¿Qué hace <code>array_filter()</code>?",
     options: [
-      "Ordena el array según el criterio definido en el callback proporcionado",
+      "Ordena los elementos del array según el criterio comparativo definido en el callback",
       "Filtra elementos del array usando una función callback; retorna array con elementos donde callback retorna true",
-      "Elimina elementos duplicados del array conservando solo valores únicos",
-      "Valida que todos los elementos del array cumplan un tipo específico"
+      "Elimina todos los elementos duplicados del array conservando únicamente los valores únicos",
+      "Valida que cada elemento del array cumpla estrictamente con un tipo de dato específico"
     ],
     correct: 1,
     difficulty: "D",
@@ -242,10 +242,10 @@ window.questions_php = [
   {
     question: "¿Qué es la inyección de dependencias en PHP?",
     options: [
-      "Inyectar datos SQL directamente en consultas sin prepared statements",
+      "Técnica de inyectar datos SQL directamente en las consultas sin usar prepared statements",
       "Patrón donde las dependencias se pasan al objeto en lugar de ser creadas internamente; facilita testing y desacoplamiento",
-      "Solo aplicable en frameworks que tienen contenedor de servicios integrado",
-      "Una vulnerabilidad de seguridad que permite ejecutar código SQL arbitrario"
+      "Patrón aplicable únicamente en frameworks que incluyen un contenedor de servicios integrado",
+      "Una vulnerabilidad de seguridad crítica que permite la ejecución de código SQL arbitrario"
     ],
     correct: 1,
     difficulty: "C",
@@ -254,10 +254,10 @@ window.questions_php = [
   {
     question: "¿Qué es el ORM Eloquent de Laravel?",
     options: [
-      "Solo compatible con MySQL e incompatible con PostgreSQL y SQLite",
+      "ORM limitado solo a MySQL e incompatible con motores PostgreSQL, SQLite o MariaDB",
       "Active Record ORM de Laravel: cada tabla tiene un Model; User::find(1), $user->posts()->get()",
-      "Un lenguaje de consulta propio que reemplaza SQL en aplicaciones Laravel",
-      "Un tipo de base de datos NoSQL embebida incluida en el framework Laravel"
+      "Lenguaje de consulta propio de Laravel que sustituye SQL completamente en las aplicaciones",
+      "Base de datos NoSQL embebida directamente en el core del framework Laravel moderno"
     ],
     correct: 1,
     difficulty: "C",
@@ -267,9 +267,9 @@ window.questions_php = [
     question: "¿Qué son los Generators en PHP?",
     options: [
       "Funciones que usan yield para retornar valores de forma lazy, sin crear array completo en memoria",
-      "Herramientas de generación de código que crean clases automáticamente",
-      "Solo aplicables dentro de bucles for y foreach para optimizar iteraciones",
-      "Son equivalentes a las coroutines de Python con la misma semántica de await"
+      "Herramientas de scaffolding que generan clases de modelo automáticamente desde el esquema",
+      "Construcciones exclusivamente aplicables dentro de bucles for y foreach para optimizar memoria",
+      "Equivalentes directos a las coroutines de Python con la misma semántica de async/await"
     ],
     correct: 0,
     difficulty: "C",
@@ -279,9 +279,9 @@ window.questions_php = [
     question: "¿Qué es JIT en PHP 8?",
     options: [
       "Just-In-Time Compilation: mejora de rendimiento compilando partes del código a código nativo, especialmente para CPU-bound tasks",
-      "Una característica de optimización específica para consultas de base de datos",
-      "Un tipo de caché de objetos que reutiliza instancias entre peticiones HTTP",
-      "Just In Time error reporting: sistema de reporte de errores diferido en PHP 8"
+      "Una optimización específica de OPcache aplicada exclusivamente a consultas de base de datos",
+      "Un sistema de caché de instancias de objetos que los reutiliza entre peticiones HTTP sucesivas",
+      "Sistema de reporte de errores diferido que agrupa excepciones al final de la petición HTTP"
     ],
     correct: 0,
     difficulty: "C",
@@ -290,10 +290,10 @@ window.questions_php = [
   {
     question: "¿Qué son los atributos (attributes) en PHP 8?",
     options: [
-      "Propiedades tipadas de objetos con validación automática en asignación",
+      "Propiedades tipadas de objetos con validación automática en cada asignación de valor",
       "Metadatos para clases, métodos, propiedades: #[Route('/home')]; reemplazan anotaciones de docblock",
-      "Un tipo de decorador equivalente a los decoradores de Python con @",
-      "Solo utilizables para definir rutas de enrutamiento en frameworks web"
+      "Un tipo de decorador de propiedades equivalente a los decoradores Python usando sintaxis @",
+      "Anotaciones utilizables exclusivamente para definir rutas de enrutamiento en frameworks MVC"
     ],
     correct: 1,
     difficulty: "C",
@@ -303,9 +303,9 @@ window.questions_php = [
     question: "¿Qué es el typed properties en PHP 7.4+?",
     options: [
       "Propiedades de clase con tipo declarado: public string $name; el tipo se verifica en asignación",
-      "Variables tipadas del scope global verificadas en tiempo de compilación",
-      "Solo aplicable a parámetros de funciones y no a propiedades de clase",
-      "Un tipo de cast automático que convierte valores al tipo declarado"
+      "Variables del scope global con tipo verificado en tiempo de compilación antes de ejecución",
+      "Característica limitada únicamente a parámetros de función y no a propiedades de clase",
+      "Un mecanismo de cast automático que convierte silenciosamente los valores al tipo declarado"
     ],
     correct: 0,
     difficulty: "C",
@@ -314,10 +314,10 @@ window.questions_php = [
   {
     question: "¿Qué es Fiber en PHP 8.1?",
     options: [
-      "Un tipo de thread nativo con memoria compartida para operaciones paralelas",
+      "Un tipo de thread nativo con memoria compartida para ejecutar operaciones realmente en paralelo",
       "Primitiva de concurrencia cooperativa: coroutine que puede pausarse y reanudarse; base para async en PHP sin extensiones",
-      "Un tipo de array de alta performance optimizado para procesamiento masivo",
-      "Solo aplicable para operaciones de lectura y escritura de archivos en disco"
+      "Un tipo de array circular de alta performance optimizado para procesamiento masivo de datos",
+      "Construcción aplicable exclusivamente para operaciones de lectura y escritura de archivos en disco"
     ],
     correct: 1,
     difficulty: "B",
@@ -326,10 +326,10 @@ window.questions_php = [
   {
     question: "¿Qué son los Enums en PHP 8.1?",
     options: [
-      "Solo constantes de tipo entero agrupadas bajo un nombre de clase",
+      "Únicamente constantes de tipo entero agrupadas bajo un nombre de clase sin métodos propios",
       "Enumeraciones de primera clase con casos que pueden tener valores y métodos: enum Status: string { case Active = 'active'; }",
-      "Constantes agrupadas equivalentes a las constantes de clase tradicionales",
-      "Un tipo de clase abstracta sellada que no permite instanciación directa"
+      "Constantes agrupadas equivalentes en todo a las constantes de clase estáticas tradicionales",
+      "Un tipo de clase abstracta sellada que impide cualquier forma de instanciación directa"
     ],
     correct: 1,
     difficulty: "B",
@@ -339,9 +339,9 @@ window.questions_php = [
     question: "¿Cómo funciona OPcache en PHP?",
     options: [
       "Almacena el bytecode compilado de PHP en memoria compartida; evita parsear y compilar los archivos en cada request",
-      "Un caché de objetos instanciados que reutiliza instancias entre peticiones",
-      "Un caché de sesiones de usuario almacenado en memoria compartida del servidor",
-      "Un caché de consultas de base de datos que evita ejecutar SQL repetido"
+      "Caché de instancias de objetos serializados que reutiliza los mismos objetos entre peticiones",
+      "Sistema de caché de sesiones de usuario almacenado en memoria compartida del servidor web",
+      "Caché de resultados de consultas SQL que evita reejecutar sentencias idénticas en la misma petición"
     ],
     correct: 0,
     difficulty: "B",
@@ -350,9 +350,9 @@ window.questions_php = [
   {
     question: "¿Qué es First-class callable syntax en PHP 8.1?",
     options: [
-      "Un tipo de arrow function con acceso implícito al scope de la clase",
-      "Solo aplicable a métodos estáticos públicos de cualquier clase",
-      "Una sintaxis de callable de primera clase heredada del estándar PSR-12",
+      "Un tipo de arrow function con acceso implícito al scope léxico de la clase contenedora",
+      "Sintaxis restringida exclusivamente a métodos estáticos públicos accesibles desde cualquier clase",
+      "Una convención de callable heredada directamente del estándar PSR-12 de estilo de código",
       "strlen(...) crea un Closure desde cualquier callable; reemplaza Closure::fromCallable()"
     ],
     correct: 3,

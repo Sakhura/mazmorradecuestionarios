@@ -981,3 +981,59 @@ code, .code-inline {
   .user-name { max-width: 55px; }
   .diff-row { grid-template-columns: 46px 1fr 42px; }
 }
+
+/* ── Firebase Setup Modal ── */
+#firebase-setup-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+}
+.fsm-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.75); backdrop-filter: blur(4px);
+}
+.fsm-box {
+  position: relative; z-index: 1;
+  background: var(--bg-card2);
+  border: 1px solid var(--purple-main);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 480px; width: 90%;
+  box-shadow: 0 0 40px var(--purple-glow);
+  animation: fadeInUp .25s ease;
+}
+.fsm-icon { font-size: 2.5rem; text-align: center; margin-bottom: .5rem; }
+.fsm-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem; color: var(--purple-bright);
+  text-align: center; margin-bottom: .75rem;
+}
+.fsm-desc {
+  color: var(--text-secondary); text-align: center;
+  font-size: .9rem; margin-bottom: 1.25rem;
+}
+.fsm-steps {
+  color: var(--text-primary);
+  font-size: .85rem; line-height: 1.8;
+  padding-left: 1.25rem; margin-bottom: 1.25rem;
+}
+.fsm-steps a { color: var(--cyan); }
+.fsm-steps code {
+  background: rgba(123,47,255,.2); color: var(--purple-bright);
+  padding: .1em .4em; border-radius: 4px; font-size: .8em;
+}
+.fsm-note {
+  background: rgba(6,182,212,.08);
+  border: 1px solid rgba(6,182,212,.25);
+  border-radius: 8px; padding: .6rem 1rem;
+  font-size: .82rem; color: var(--cyan);
+  margin-bottom: 1.25rem;
+}
+.fsm-close {
+  display: block; width: 100%;
+  padding: .7rem; border-radius: 8px;
+  background: var(--purple-main); color: #fff;
+  border: none; cursor: pointer;
+  font-family: 'Orbitron', sans-serif; font-size: .85rem;
+  transition: background .2s;
+}
+.fsm-close:hover { background: var(--purple-bright); }
